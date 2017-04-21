@@ -102,14 +102,17 @@ public class BinarySearchTree {
 				System.out.println("case 4");
 					root.SetData(root.GetLeft().RightMost().GetData());
 					if(root.GetLeft().RightMost().GetLeft() == null){
-						root.GetLeft().RemoveRigthMost(root);
+//						root.GetLeft().RemoveRigthMost(root);
+						Remove(root, root.GetLeft().RightMost().GetData(), parent);
 					}
 					else{
 						while(root.GetLeft().RightMost().GetLeft() != null){
 							root.GetLeft().SetData(root.GetLeft().GetLeft().GetData());
+							parent = root;
 							root = root.GetLeft();
 						}
-						root.GetLeft().RemoveRigthMost(root);
+//						root.GetLeft().RemoveRigthMost(root);
+						Remove(root, root.RightMost().GetData(), parent);
 					}
 				}
 			}

@@ -103,16 +103,19 @@ public class BinarySearchTree {
 					root.SetData(root.GetLeft().RightMost().GetData());
 					if(root.GetLeft().RightMost().GetLeft() == null){
 //						root.GetLeft().RemoveRigthMost(root);
-						Remove(root, root.GetLeft().RightMost().GetData(), parent);
+						Remove(root.GetLeft(), root.GetLeft().RightMost().GetData(), root);
 					}
-					else{
+					else if(root.GetLeft() == root.GetLeft().RightMost()){
+						/*
 						while(root.GetLeft().RightMost().GetLeft() != null){
 							root.GetLeft().SetData(root.GetLeft().GetLeft().GetData());
 							parent = root;
 							root = root.GetLeft();
 						}
 //						root.GetLeft().RemoveRigthMost(root);
-						Remove(root, root.RightMost().GetData(), parent);
+						 */
+						root.GetLeft().SetData(root.GetLeft().GetLeft().GetData());
+						Remove(root.GetLeft().GetLeft(), root.GetLeft().GetLeft().GetData(), root.GetLeft());
 					}
 				}
 			}

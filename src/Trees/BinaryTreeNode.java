@@ -84,6 +84,7 @@ public class BinaryTreeNode<T> {
 		}
 	}
 	
+	//not needed any more
 	public void RemoveRigthMost(BinaryTreeNode<T> parent){
 		if(right == null){
 			parent.SetLeft(null);

@@ -89,27 +89,42 @@ public class MainCG {
 			}
 			case "I":{
 				System.out.println("City codes and distance:");
-				String[] temp1 = dataKey.get(k.next());
-				int src = Integer.parseInt(temp1[0]);
-				String[] temp2 = dataKey.get(k.next());
-				int trg = Integer.parseInt(temp2[0]);
-				int dist = k.nextInt();
-				k.nextLine();
-				graph.addEdge(src, trg, dist);
-				System.out.println("You have inserted a road from " + temp1[2] + " to " + temp2[2] +
-						" with distance " + graph.getWeight(src, trg));
+				try{
+					String[] temp1 = dataKey.get(k.next());
+					int src = Integer.parseInt(temp1[0]);
+					String[] temp2 = dataKey.get(k.next());
+					int trg = Integer.parseInt(temp2[0]);
+					int dist = k.nextInt();
+					k.nextLine();
+					if(!graph.isEdge(src, trg)){
+						graph.addEdge(src, trg, dist);
+						System.out.println("You have inserted a road from " + temp1[2] + " to " + temp2[2] +
+								" with distance " + graph.getWeight(src, trg));
+					}
+					else{
+						System.out.println("a road between these cities already exists, please remove it first.");
+					}
+				}
+				catch(NullPointerException e){
+					System.out.println("one of the city codes doesn't exist");
+				}
 				break;
 			}
 			case "R":{
 				System.out.println("City codes:");
 				String[] temp1 = dataKey.get(k.next());
-				int src = Integer.parseInt(temp1[0]);
-				String[] temp2 = dataKey.get(k.next());
-				int trg = Integer.parseInt(temp2[0]);
-				k.nextLine();
-				graph.removeEdge(src, trg);
-				if(!graph.isEdge(src, trg)){
-					System.out.println("The road from " + temp1[2] + " to " + temp2[2] + " doesn't exist");
+				try{
+					int src = Integer.parseInt(temp1[0]);
+					String[] temp2 = dataKey.get(k.next());
+					int trg = Integer.parseInt(temp2[0]);
+					k.nextLine();
+					graph.removeEdge(src, trg);
+					if(!graph.isEdge(src, trg)){
+						System.out.println("The road from " + temp1[2] + " to " + temp2[2] + " doesn't exist");
+					}
+				}
+				catch(NullPointerException e){
+					System.out.println("one of the city codes doesn't exist");
 				}
 				break;
 			}
